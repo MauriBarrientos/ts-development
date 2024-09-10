@@ -4,7 +4,7 @@ import { config } from "../config/config";
 
 export const sequelize = new Sequelize(
     config.DB_NAME as string,
-    config.DB_USER as string || "root",
+    config.DB_USER as string || "root", //lA CONTRASEÑA ES ROOT PERO da error para usuario HP probar en instituto.
     config.DB_PASSWORD as string,
     {
         host: config.DB_HOST,
