@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import "dotenv/config";
 import cors from 'cors';
 import { config } from './config/config';
 import DBConnection from './db/DBconnection';
