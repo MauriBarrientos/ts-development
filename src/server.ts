@@ -4,6 +4,7 @@ import "dotenv/config";
 import cors from 'cors';
 import { config } from './config/config';
 import DBConnection from './db/DBconnection';
+import userRoutes from "./routes/UserRoutes"
 
 class Server {
     app: express.Application;
@@ -13,6 +14,7 @@ class Server {
         this.app = express();
         this.port = config.PORT || 3000;
         this.DBConnection();
+        this.routes();
     }
 
     middlewares(): void {
@@ -24,6 +26,10 @@ class Server {
     async DBConnection(): Promise<void> {
         const db = new DBConnection();
         await db.connect();
+    }
+
+    async routes(): Promise<void> {
+        this.app.use('/', userRoutes);
     }
 
     async listen(): Promise<void> {

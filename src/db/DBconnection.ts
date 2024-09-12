@@ -1,6 +1,6 @@
 import { sequelize } from "./DBconfig";
 import { Sequelize } from "sequelize";
-import { ModelRelationships } from "../models/relations";
+import { ModelRelationships } from "../models/Relations";
 
 class DBConnection {
     private sequelize: Sequelize;
