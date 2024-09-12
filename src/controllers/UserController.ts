@@ -14,16 +14,17 @@ class UserController {
         }
     }
 
-    // Crear un nuevo usuario
     async create(req: Request, res: Response): Promise<Response> {
         try {
             const user = req.body;
             const newUser = await UserServices.create(user);
             return res.status(201).json(newUser);
         } catch (error) {
-            return res.status(500).json({ message: "Error al crear usuario", error });
+            console.error("Error al crear usuario:", error); // Añadir log para depuración
+            return res.status(500).json({ message: "Error al crear usuario", error: (error as Error).message });
         }
     }
+    
 
     // Actualizar un usuario por ID
     async update(req: Request, res: Response): Promise<Response> {

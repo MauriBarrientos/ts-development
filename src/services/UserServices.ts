@@ -8,10 +8,15 @@ class UserServices {
         return await User.findAll();
     }
 
-    // Crear un nuevo usuario
-    async create(user: Partial<User>): Promise<User> { //son promesas por lo que hay que el tipo de retorno es p
-        return await User.create(user);
+    async create(user: Partial<User>): Promise<User> {
+        try {
+            return await User.create(user);
+        } catch (error) {
+            console.error('Error en UserServices.create:', error); 
+            throw error;
+        }
     }
+    
 
     // Actualizar un usuario por ID
     async update(id: number, user: Partial<User>): Promise<[number]> {

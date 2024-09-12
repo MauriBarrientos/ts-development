@@ -13,15 +13,18 @@ class Server {
     constructor(){
         this.app = express();
         this.port = config.PORT || 3000;
+        this.middlewares();
         this.DBConnection();
         this.routes();
+        
     }
 
     middlewares(): void {
         this.app.use(cors());
-        this.app.use(express.json());
+        this.app.use(express.json()); 
         this.app.use(morgan('dev'));
     }
+    
 
     async DBConnection(): Promise<void> {
         const db = new DBConnection();
