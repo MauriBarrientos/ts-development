@@ -59,6 +59,7 @@ class UserController {
             return res.status(500).json({ message: "Error al buscar usuario", error });
         }
     }
+    
 }
 
 export default new UserController();

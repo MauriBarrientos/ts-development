@@ -4,7 +4,8 @@ import "dotenv/config";
 import cors from 'cors';
 import { config } from './config/config';
 import DBConnection from './db/DBconnection';
-import userRoutes from "./routes/UserRoutes"
+import userRoutes from "./routes/UserRoutes";
+import authRoutes from "./routes/AuthRoutes"; // Nueva importación
 
 class Server {
     app: express.Application;
@@ -16,7 +17,6 @@ class Server {
         this.middlewares();
         this.DBConnection();
         this.routes();
-        
     }
 
     middlewares(): void {
@@ -24,25 +24,21 @@ class Server {
         this.app.use(express.json()); 
         this.app.use(morgan('dev'));
     }
-    
 
     async DBConnection(): Promise<void> {
         const db = new DBConnection();
         await db.connect();
     }
 
-    async routes(): Promise<void> {
+    routes(): void {
         this.app.use('/', userRoutes);
+        this.app.use('/', authRoutes); // Registrar la nueva ruta de autenticación
     }
 
-    async listen(): Promise<void> {
-        try {
-            this.app.listen(this.port, () => {
-                console.log(`Server on http://127.0.0.1:${this.port}`);
-            });
-        } catch (err: any) {
-            console.error('Failed to start the server', err);
-        }
+    listen(): void {
+        this.app.listen(this.port, () => {
+            console.log(`Server on http://127.0.0.1:${this.port}`);
+        });
     }
 }
 
