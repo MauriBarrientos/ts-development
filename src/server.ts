@@ -5,7 +5,10 @@ import cors from 'cors';
 import { config } from './config/config';
 import DBConnection from './db/DBconnection';
 import userRoutes from "./routes/UserRoutes";
-import authRoutes from "./routes/AuthRoutes"; // Nueva importación
+import clientRoutes from "./routes/ClientRoutes";
+import supplierRoutes from "./routes/SupplierRoutes";
+import equipmentRoutes from "./routes/EquipmentRoutes"
+import authRoutes from "./routes/AuthRoutes";
 
 class Server {
     app: express.Application;
@@ -32,7 +35,10 @@ class Server {
 
     routes(): void {
         this.app.use('/', userRoutes);
-        this.app.use('/', authRoutes); // Registrar la nueva ruta de autenticación
+        this.app.use('/', clientRoutes);
+        this.app.use('/', supplierRoutes);
+        this.app.use('/', equipmentRoutes);
+        this.app.use('/', authRoutes);
     }
 
     listen(): void {

@@ -8,23 +8,23 @@ import { Client } from './Client';
 export class ModelRelationships {
     static defineRelationships(): void {
         // Relacionar User con Equipment (1 a N)
-        User.hasMany(Equipment, { foreignKey: 'userId' });
-        Equipment.belongsTo(User, { foreignKey: 'userId' });
+        User.hasMany(Equipment, { foreignKey: 'user_Id' });
+        Equipment.belongsTo(User, { foreignKey: 'user_Id' });
 
         // Relacionar Equipment con Supplier (1 a N)
-        Supplier.hasMany(Equipment, { foreignKey: 'supplierId' });
-        Equipment.belongsTo(Supplier, { foreignKey: 'supplierId' });
+        Supplier.hasMany(Equipment, { foreignKey: 'supplier_Id' });
+        Equipment.belongsTo(Supplier, { foreignKey: 'supplier_Id' });
 
         // Relacionar Equipment con EquipInfo (1 a 1)
-        Equipment.hasOne(EquipInfo, { foreignKey: 'equipInfoId' });
-        EquipInfo.belongsTo(Equipment, { foreignKey: 'equipInfoId' });
+        Equipment.hasOne(EquipInfo, { foreignKey: 'equipInfo_Id' });
+        EquipInfo.belongsTo(Equipment, { foreignKey: 'equipInfo_Id' });
 
         // Relacionar BuyDetails con Equipment (1 a N)
-        Equipment.hasMany(BuyDetails, { foreignKey: 'buyDetailsId' });
-        BuyDetails.belongsTo(Equipment, { foreignKey: 'buyDetailsId' });
+        Equipment.hasMany(BuyDetails, { foreignKey: 'buyDetails_Id' });
+        BuyDetails.belongsTo(Equipment, { foreignKey: 'buyDetails_Id' });
 
         // Relacionar BuyDetails con Client (1 a 1)
-        Client.hasOne(BuyDetails, { foreignKey: 'clientId' });
-        BuyDetails.belongsTo(Client, { foreignKey: 'clientId' });
+        Client.hasOne(BuyDetails, { foreignKey: 'client_Id' });
+        BuyDetails.belongsTo(Client, { foreignKey: 'client_Id' });
     }
 }

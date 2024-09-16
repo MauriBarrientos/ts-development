@@ -19,7 +19,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || "secretKey") as TokenPayload;
+        const decoded = jwt.verify(token, process.env.SECRET_KEY || "secretKey") as TokenPayload;
         req.user = decoded; // Agrega la información del token al objeto `req`
         next();
     } catch (error) {
@@ -30,6 +30,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
 export const verifyRole = (role: string) => {
     return (req: Request, res: Response, next: NextFunction) => {
         const userRole = req.user?.role;
+        console.log(`Rol del usuario: ${userRole}, Rol requerido: ${role}`); // <-- Agregar este log
         if (userRole !== role) {
             return res.status(403).json({ message: "Acceso denegado. No tienes el rol adecuado" });
         }
