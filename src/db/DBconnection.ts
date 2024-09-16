@@ -15,7 +15,7 @@ class DBConnection {
             ModelRelationships.defineRelationships();
 
             // Sincronizar los modelos con la base de datos
-            await this.sequelize.sync({ force: false });
+            await this.sequelize.sync({ alter: true });
             console.log('Felicidades, conectaste con PostgreSQL y las tablas se han sincronizado');
         } catch (err) {
             console.error('Error al conectar con PostgreSQL :(', err);

@@ -1,7 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../db/DBconfig";
 
-//Tipar los campos del modelo
 export class Equipment extends Model {
     declare id: number;
     declare name: string;
@@ -10,9 +9,9 @@ export class Equipment extends Model {
     declare status: string;
     declare equip_info_id: number;
     declare buy_date: Date;
-    declare users_id: number;
+    declare user_id: number;
     declare supplier_id: number;
-};
+}
 
 Equipment.init({
     id: {
@@ -44,7 +43,7 @@ Equipment.init({
         type: DataTypes.DATE,
         allowNull: false,
     },
-    users_id: {
+    user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },

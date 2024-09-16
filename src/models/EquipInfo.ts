@@ -2,14 +2,14 @@ import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../db/DBconfig";
 
 export class EquipInfo extends Model {
-    declare id: number;
+    declare equip_info_id: number;
     declare brand: string;
     declare model: string;
     declare description: string;
-};
+}
 
 EquipInfo.init({
-    id: {
+    equip_info_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

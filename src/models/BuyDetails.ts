@@ -3,10 +3,10 @@ import { sequelize } from "../db/DBconfig";
 
 export class BuyDetails extends Model {
     declare id: number;
-    declare equipments_id: number;
-    declare clients_id: number;
+    declare equipment_id: number;
+    declare client_id: number;
     declare total_amount: number;
-};
+}
 
 BuyDetails.init({
     id: {
@@ -14,11 +14,11 @@ BuyDetails.init({
         autoIncrement: true,
         primaryKey: true,
     },
-    equipments_id: {
+    equipment_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    clients_id: {
+    client_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
@@ -31,4 +31,3 @@ BuyDetails.init({
     modelName: 'buy_details',
     timestamps: false,
 });
-
