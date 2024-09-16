@@ -46,6 +46,10 @@ class UserServices {
     async findByEmail(email: string): Promise<User | null> {
         return await User.findOne({ where: { email } });
     }
+
+    async findByUsername(username: string): Promise<User | null> {
+        return await User.findOne({ where: { username } });
+    }
 }
 
 export default new UserServices();
