@@ -1,55 +1,60 @@
-import { useState } from 'react';
-import { login } from '../services/authService';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginForm({ onLogin }) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [token, setToken] = useState('');
-    const navigate = useNavigate();
+const LoginForm = ({ onLogin }) => {  // Recibe el prop onLogin
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const token = await login(username, password);
-            setToken(token);
-            onLogin();
-            // Redirigir al dashboard después de un login exitoso
-            setTimeout(() => {
-                navigate('/dashboard');
-            }, 2000); // Esperar 2 segundos antes de redirigir
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Username"
-                    required
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    required
-                />
-                <button type="submit">Login</button>
-                {error && <p>{error}</p>}
-            </form>
-            {token && (
-                <div>
-                    <p>Token generado: {token}</p>
-                    <p>Redirigiendo en 2 segundos...</p>
-                </div>
-            )}
+    const response = await fetch('http://127.0.0.1:3000/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      onLogin();  // Ejecuta onLogin en caso de éxito
+      navigate('/dashboard');  // Asegúrate de que la ruta es correcta
+    } else {
+      console.error('Login failed');
+    }
+  };
+
+  return (
+    <div className="container mt-5">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div className="mb-3">
+          <label>Username</label>
+          <input 
+            type="text" 
+            className="form-control"
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+            required 
+          />
         </div>
-    );
-}
+        <div className="mb-3">
+          <label>Password</label>
+          <input 
+            type="password" 
+            className="form-control"
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Login</button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginForm;

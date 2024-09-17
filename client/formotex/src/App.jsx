@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import EquipmentList from './components/EquipmentList';
-import AddEquipmentForm from './components/AddEquipmentForm';
+import CreateEquipment from './components/CreateEquipment';  // Nuevo nombre
+import EditEquipment from './components/EditEquipment';  // Nuevo nombre
 import { getToken, logout } from './services/authService';
 
 // Ruta privada que redirige si no está autenticado
@@ -35,7 +36,17 @@ export default function App() {
                         <>
                             <button onClick={handleLogout}>Cerrar sesión</button>
                             <EquipmentList />
-                            <AddEquipmentForm />
+                            <CreateEquipment />  {/* Cambio aquí: AddEquipmentForm -> CreateEquipment */}
+                        </>
+                    </PrivateRoute>
+                } />
+
+                {/* Nueva ruta para editar equipos */}
+                <Route path="/edit-equipment/:id" element={
+                    <PrivateRoute>
+                        <>
+                            <button onClick={handleLogout}>Cerrar sesión</button>
+                            <EditEquipment />  {/* Nuevo componente para editar equipos */}
                         </>
                     </PrivateRoute>
                 } />

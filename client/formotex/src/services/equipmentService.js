@@ -1,57 +1,83 @@
 import { getToken } from './authService';
 
-const API_URL = "http://127.0.0.1:3000"; // Ajusta la URL de tu API
+const API_URL = "http://127.0.0.1:3000"; 
 
-const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${getToken()}`
+// Función para obtener el header con el token incluido
+const getHeaders = () => {
+    const token = getToken();
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    };
 };
 
 export const getAllEquipments = async () => {
-    const token = localStorage.getItem('token'); // O de donde obtengas el token
-    const response = await fetch('http://127.0.0.1:3000/equipment', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`, // Asegúrate de enviar el token correctamente
-        'Content-Type': 'application/json',
-      },
+    const response = await fetch(`${API_URL}/equipment`, {
+        method: 'GET',
+        headers: getHeaders(),
     });
-  
+
     if (!response.ok) {
-      throw new Error('Failed to fetch equipment');
+        throw new Error('Failed to fetch equipment');
     }
-  
+
     return await response.json();
-  };
-  
+};
 
 export const getEquipmentById = async (id) => {
-    const response = await fetch(`${API_URL}/equipment/${id}`, { headers });
+    const response = await fetch(`${API_URL}/equipment/${id}`, {
+        method: 'GET',
+        headers: getHeaders(),
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch equipment with ID: ${id}`);
+    }
+
     return await response.json();
 };
 
 export const addEquipment = async (equipment) => {
     const response = await fetch(`${API_URL}/equipment`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(equipment)
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(equipment),
     });
-    return await response.json();
-};
+  
+    const data = await response.json();
+  
+    if (!response.ok) {
+      console.error('Error:', data);
+      throw new Error('Failed to add equipment');
+    }
+  
+    return data;
+  };
+  
 
 export const updateEquipment = async (id, equipment) => {
     const response = await fetch(`${API_URL}/equipment/${id}`, {
         method: 'PUT',
-        headers,
-        body: JSON.stringify(equipment)
+        headers: getHeaders(),
+        body: JSON.stringify(equipment),
     });
+
+    if (!response.ok) {
+        throw new Error('Failed to update equipment');
+    }
+
     return await response.json();
 };
 
 export const deleteEquipment = async (id) => {
     const response = await fetch(`${API_URL}/equipment/${id}`, {
         method: 'DELETE',
-        headers
+        headers: getHeaders(),
     });
+
+    if (!response.ok) {
+        throw new Error(`Failed to delete equipment with ID: ${id}`);
+    }
+
     return await response.json();
 };

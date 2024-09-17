@@ -1,44 +1,66 @@
-// EquipmentList.jsx
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAllEquipments, deleteEquipment } from '../services/equipmentService';
+import { useNavigate } from 'react-router-dom';
 
 const EquipmentList = () => {
-  const [equipments, setEquipments] = useState([]); // Inicializar como arreglo vacío
-  const [loading, setLoading] = useState(true); // Para manejar el estado de carga
+  const [equipments, setEquipments] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const equipmentsData = await getAllEquipments();
-        setEquipments(equipmentsData || []); // Asegurar que se asigna un arreglo
+        const data = await getAllEquipments();
+        setEquipments(data);
       } catch (error) {
-        console.error('Error fetching equipments:', error);
-      } finally {
-        setLoading(false);
+        console.error('Error fetching equipments', error);
       }
     };
+
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>; // Muestra un mensaje mientras los datos se cargan
-  }
-
-  if (equipments.length === 0) {
-    return <div>No equipments found</div>; // Manejar el caso donde no haya datos
-  }
+  const handleDelete = async (id) => {
+    try {
+      await deleteEquipment(id);
+      setEquipments(equipments.filter((equipment) => equipment.id !== id));
+    } catch (error) {
+      console.error('Error deleting equipment', error);
+    }
+  };
 
   return (
-    <div>
+    <div className="container mt-5">
       <h2>Equipment List</h2>
-      <ul>
-        {equipments.map((equipment) => (
-          <li key={equipment.id}>
-            {equipment.name}
-            <button onClick={() => deleteEquipment(equipment.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <div className="col-md-3 mb-2">
+        <button className="btn btn-primary" onClick={() => navigate('/equipment/create')}>New Equipment</button>
+      </div>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Buy Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {equipments.map((equipment) => (
+            <tr key={equipment.id}>
+              <td>{equipment.name}</td>
+              <td>{equipment.type}</td>
+              <td>{equipment.stock}</td>
+              <td>{equipment.status}</td>
+              <td>{new Date(equipment.buy_date).toLocaleDateString()}</td>
+              <td>
+                <button className="btn btn-warning" onClick={() => navigate(`/equipment/edit/${equipment.id}`)}>Edit</button>
+                <button className="btn btn-danger" onClick={() => handleDelete(equipment.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
