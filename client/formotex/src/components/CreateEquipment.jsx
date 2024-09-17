@@ -9,6 +9,8 @@ const CreateEquipment = () => {
     stock: 0,
     status: '',
     buy_date: '',
+    user_id: 1,  // Asigna el ID del usuario conectado
+    supplier_id: '',  // Asigna el ID del proveedor seleccionado
   });
 
   const navigate = useNavigate();
@@ -22,7 +24,6 @@ const CreateEquipment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(equipment);
     try {
       await addEquipment(equipment);
       navigate('/equipment');
@@ -86,6 +87,17 @@ const CreateEquipment = () => {
             name="buy_date" 
             className="form-control" 
             value={equipment.buy_date} 
+            onChange={handleChange} 
+            required 
+          />
+        </div>
+        <div className="mb-3">
+          <label>Supplier ID</label>
+          <input 
+            type="number" 
+            name="supplier_id" 
+            className="form-control" 
+            value={equipment.supplier_id} 
             onChange={handleChange} 
             required 
           />

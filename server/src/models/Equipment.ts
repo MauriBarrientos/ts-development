@@ -35,10 +35,6 @@ Equipment.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    equip_info_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
     buy_date: {
         type: DataTypes.DATE,
         allowNull: false,
