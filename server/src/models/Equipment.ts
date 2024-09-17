@@ -11,6 +11,7 @@ export class Equipment extends Model {
     declare buy_date: Date;
     declare user_id: number;
     declare supplier_id: number;
+    declare client_id: number;  // Añadido client_id
 }
 
 Equipment.init({
@@ -44,6 +45,10 @@ Equipment.init({
         allowNull: false,
     },
     supplier_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    client_id: { 
         type: DataTypes.INTEGER,
         allowNull: false,
     },
