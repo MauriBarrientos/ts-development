@@ -40,10 +40,7 @@ export default function App() {
     return (
         <Router>
             <Routes>
-                {/* Ruta pública para el login */}
                 <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-
-                {/* Ruta privada para listar equipos */}
                 <Route path="/dashboard" element={
                     <PrivateRoute>
                         <>
@@ -52,19 +49,14 @@ export default function App() {
                         </>
                     </PrivateRoute>
                 } />
-
-                {/* Ruta privada para crear un equipo */}
                 <Route path="/create-equipment" element={
                     <PrivateRoute>
                         <>
                         <button onClick={handleCreate}>Añadir equipo</button>
-                        
                             <CreateEquipment />
                         </>
                     </PrivateRoute>
                 } />
-
-                {/* Ruta privada para editar equipos */}
                 <Route path="/edit-equipment/:id" element={
                     <PrivateRoute>
                         <>
@@ -74,7 +66,6 @@ export default function App() {
                     </PrivateRoute>
                 } />
 
-                {/* Redirigir a login si no coincide con ninguna ruta */}
                 <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
         </Router>

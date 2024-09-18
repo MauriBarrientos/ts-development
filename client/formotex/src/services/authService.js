@@ -30,7 +30,7 @@ export const getUserIdFromToken = () => {
     const token = getToken();
     if (token) {
         const decoded = jwtDecode(token);
-        return decoded.user_id;  // Asegúrate de que el user_id esté en el payload del token
+        return decoded.user_id; 
     }
     return null;
 };

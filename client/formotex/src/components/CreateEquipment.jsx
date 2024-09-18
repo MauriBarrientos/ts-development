@@ -59,7 +59,6 @@ const CreateEquipment = () => {
         Volver al inicio
       </button>
       <form onSubmit={handleSubmit}>
-        {/* Campos del formulario */}
         <div className="form-group">
           <label htmlFor="name">Nombre</label>
           <input

@@ -20,8 +20,8 @@ const LoginForm = ({ onLogin }) => {  // Recibe el prop onLogin
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem('token', data.token);
-      onLogin();  // Ejecuta onLogin en caso de éxito
-      navigate('/dashboard');  // Asegúrate de que la ruta es correcta
+      onLogin(); 
+      navigate('/dashboard');  
     } else {
       console.error('Login failed');
     }
