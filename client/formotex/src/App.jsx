@@ -5,7 +5,7 @@ import EquipmentList from './components/EquipmentList';
 import CreateEquipment from './components/CreateEquipment';
 import EditEquipment from './components/EditEquipment';
 import { getToken, logout } from './services/authService';
-import { addEquipment } from './services/equipmentService';
+import { addEquipment, editEquipment } from './services/equipmentService';
 
 // Ruta privada que redirige si no está autenticado
 function PrivateRoute({ children }) {
@@ -30,6 +30,10 @@ export default function App() {
 
     const handleCreate = () => {
         addEquipment
+    }
+
+    const handleEdit = () => {
+        editEquipment
     }
 
 
@@ -64,7 +68,7 @@ export default function App() {
                 <Route path="/edit-equipment/:id" element={
                     <PrivateRoute>
                         <>
-                            <button onClick={handleLogout}>Cerrar sesión</button>
+                            <button onClick={handleEdit}>Cerrar sesión</button>
                             <EditEquipment />
                         </>
                     </PrivateRoute>

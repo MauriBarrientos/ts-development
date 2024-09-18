@@ -55,7 +55,7 @@ export const addEquipment = async (equipment) => {
 };
   
 
-export const updateEquipment = async (id, equipment) => {
+export const editEquipment = async (id, equipment) => {
     const response = await fetch(`${API_URL}/equipment/${id}`, {
         method: 'PUT',
         headers: getHeaders(),

@@ -34,21 +34,21 @@ const EquipmentList = () => {
 
   return (
     <div className="container mt-5">
-      <h2>Equipment List</h2>
+      <h2>Lista de equipos</h2>
       <div className="col-md-3 mb-2">
         <button className="btn btn-primary" onClick={handleCreate}>
-          New Equipment
+          Añadir equipo
         </button>
       </div>
       <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Type</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
             <th>Stock</th>
-            <th>Status</th>
-            <th>Buy Date</th>
-            <th>Actions</th>
+            <th>Estado</th>
+            <th>Fecha de compra</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -60,8 +60,8 @@ const EquipmentList = () => {
               <td>{equipment.status}</td>
               <td>{new Date(equipment.buy_date).toLocaleDateString()}</td>
               <td>
-                <button className="btn btn-warning" onClick={() => navigate(`/equipment/edit/${equipment.id}`)}>Edit</button>
-                <button className="btn btn-danger" onClick={() => handleDelete(equipment.id)}>Delete</button>
+                <button className="btn btn-warning" onClick={() => navigate(`/edit-equipment/${equipment.id}`)}>Editar</button>
+                <button className="btn btn-danger" onClick={() => handleDelete(equipment.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
