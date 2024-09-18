@@ -1,0 +1,27 @@
+/* Estilos globales para centrar todo el contenido dentro del body */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;  /* Asegura que el body ocupe el 100% de la pantalla */
+  }
+  
+  body {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    height: 100vh;           /* Ocupa toda la altura de la ventana */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Color de fondo opcional */
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;  /* Puedes ajustar el tamaño según necesites */
+    max-width: 1200px;  /* Tamaño máximo opcional */
+  }
+  

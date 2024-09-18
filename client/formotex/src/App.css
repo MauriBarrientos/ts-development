@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.container-center {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  min-height: 100vh;       /* Ocupa toda la altura de la pantalla */
+}
