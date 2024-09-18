@@ -28,11 +28,15 @@ const EquipmentList = () => {
     }
   };
 
+  const handleCreate = () => {
+    navigate('/create-equipment');
+}
+
   return (
     <div className="container mt-5">
       <h2>Equipment List</h2>
       <div className="col-md-3 mb-2">
-        <button className="btn btn-primary" onClick={() => navigate('/equipment/create')}>
+        <button className="btn btn-primary" onClick={handleCreate}>
           New Equipment
         </button>
       </div>

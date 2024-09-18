@@ -5,6 +5,7 @@ import EquipmentList from './components/EquipmentList';
 import CreateEquipment from './components/CreateEquipment';
 import EditEquipment from './components/EditEquipment';
 import { getToken, logout } from './services/authService';
+import { addEquipment } from './services/equipmentService';
 
 // Ruta privada que redirige si no está autenticado
 function PrivateRoute({ children }) {
@@ -12,8 +13,11 @@ function PrivateRoute({ children }) {
     return token ? children : <Navigate to="/login" />;
 }
 
+
+
 export default function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(!!getToken());
+
 
     const handleLogin = () => {
         setIsAuthenticated(true);
@@ -23,6 +27,11 @@ export default function App() {
         logout();
         setIsAuthenticated(false);
     };
+
+    const handleCreate = () => {
+        addEquipment
+    }
+
 
     return (
         <Router>
@@ -44,7 +53,8 @@ export default function App() {
                 <Route path="/create-equipment" element={
                     <PrivateRoute>
                         <>
-                            <button onClick={handleLogout}>Cerrar sesión</button>
+                        <button onClick={handleCreate}>Añadir equipo</button>
+                        
                             <CreateEquipment />
                         </>
                     </PrivateRoute>
