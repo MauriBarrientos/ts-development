@@ -7,11 +7,10 @@ export class Equipment extends Model {
     declare type: string;
     declare stock: number;
     declare status: string;
-    declare equip_info_id: number;
     declare buy_date: Date;
     declare user_id: number;
     declare supplier_id: number;
-    declare client_id: number;  // Añadido client_id
+    declare client_id: number; 
 }
 
 Equipment.init({

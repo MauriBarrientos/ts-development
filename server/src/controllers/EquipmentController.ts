@@ -1,6 +1,6 @@
-// controllers/EquipmentController.ts
 import { Request, Response } from "express";
 import EquipmentService from "../services/EquipmentServices";
+import { Equipment } from "../models/Equipment";
 
 class EquipmentController {
     // Obtener todos los equipos
@@ -26,15 +26,30 @@ class EquipmentController {
         }
     }
 
-    // Crear un nuevo equipo
     async create(req: Request, res: Response) {
         try {
-            const newEquipment = await EquipmentService.createEquipment(req.body);
-            return res.status(201).json({ message: "Equipo creado con éxito", newEquipment });
+            // Obtén los datos del cuerpo de la solicitud
+            const { name, type, stock, status, buy_date, user_id, supplier_id, client_id } = req.body;
+
+            // Asegúrate de que los datos coincidan con el modelo
+            const equipment = await Equipment.create({
+                name,
+                type,
+                stock,
+                status,
+                buy_date,
+                user_id, // Este user_id ahora se obtiene del frontend
+                supplier_id,
+                client_id
+            });
+
+            res.status(201).json(equipment);
         } catch (error) {
-            return res.status(500).json({ message: "Error al crear el equipo", error: (error as Error).message });
+            console.error('Error creating equipment:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     }
+
 
     // Actualizar un equipo
     async update(req: Request, res: Response) {
@@ -58,4 +73,3 @@ class EquipmentController {
 }
 
 export default new EquipmentController();
-

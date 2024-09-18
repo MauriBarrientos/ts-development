@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getEquipmentById, updateEquipment } from '../services/equipmentService';
+import './EquipmentList.css';
 
 const EditEquipment = () => {
   const { id } = useParams();
@@ -36,12 +37,12 @@ const EditEquipment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateEquipment(id, equipment);
-      navigate('/equipment');
+        await updateEquipment(id, equipment);
+        navigate('/equipment');
     } catch (error) {
-      console.error('Error updating equipment', error);
+        console.error('Error updating equipment', error);
     }
-  };
+};
 
   return (
     <div className="container mt-5">

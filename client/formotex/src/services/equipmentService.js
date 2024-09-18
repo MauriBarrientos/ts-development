@@ -52,7 +52,7 @@ export const addEquipment = async (equipment) => {
     }
   
     return data;
-  };
+};
   
 
 export const updateEquipment = async (id, equipment) => {

@@ -14,7 +14,6 @@ class EquipmentService {
         return await Equipment.findByPk(id);
     }
 
-    // Crear un nuevo equipo
     async createEquipment(equipmentData: {
         name: string;
         type: string;
@@ -22,7 +21,7 @@ class EquipmentService {
         status: string;
         equip_info_id: number;
         buy_date: Date;
-        users_id: number;
+        users_id: number; // Asegúrate de que el nombre sea users_id
         supplier_id: number;
     }) {
         return await Equipment.create(equipmentData);
