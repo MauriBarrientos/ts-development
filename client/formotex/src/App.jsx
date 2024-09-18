@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import EquipmentList from './components/EquipmentList';
-import CreateEquipment from './components/CreateEquipment';  // Nuevo nombre
-import EditEquipment from './components/EditEquipment';  // Nuevo nombre
+import CreateEquipment from './components/CreateEquipment';
+import EditEquipment from './components/EditEquipment';
 import { getToken, logout } from './services/authService';
 
 // Ruta privada que redirige si no está autenticado
@@ -27,31 +27,40 @@ export default function App() {
     return (
         <Router>
             <Routes>
-                {/* Ruta pública */}
+                {/* Ruta pública para el login */}
                 <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-                
-                {/* Ruta privada */}
+
+                {/* Ruta privada para listar equipos */}
                 <Route path="/dashboard" element={
                     <PrivateRoute>
                         <>
                             <button onClick={handleLogout}>Cerrar sesión</button>
                             <EquipmentList />
-                            <CreateEquipment />  {/* Cambio aquí: AddEquipmentForm -> CreateEquipment */}
                         </>
                     </PrivateRoute>
                 } />
 
-                {/* Nueva ruta para editar equipos */}
+                {/* Ruta privada para crear un equipo */}
+                <Route path="/create-equipment" element={
+                    <PrivateRoute>
+                        <>
+                            <button onClick={handleLogout}>Cerrar sesión</button>
+                            <CreateEquipment />
+                        </>
+                    </PrivateRoute>
+                } />
+
+                {/* Ruta privada para editar equipos */}
                 <Route path="/edit-equipment/:id" element={
                     <PrivateRoute>
                         <>
                             <button onClick={handleLogout}>Cerrar sesión</button>
-                            <EditEquipment />  {/* Nuevo componente para editar equipos */}
+                            <EditEquipment />
                         </>
                     </PrivateRoute>
                 } />
-                
-                {/* Redirecciona a /login si la ruta no es válida */}
+
+                {/* Redirigir a login si no coincide con ninguna ruta */}
                 <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
         </Router>

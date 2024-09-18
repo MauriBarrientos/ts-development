@@ -32,7 +32,9 @@ const EquipmentList = () => {
     <div className="container mt-5">
       <h2>Equipment List</h2>
       <div className="col-md-3 mb-2">
-        <button className="btn btn-primary" onClick={() => navigate('/equipment/create')}>New Equipment</button>
+        <button className="btn btn-primary" onClick={() => navigate('/equipment/create')}>
+          New Equipment
+        </button>
       </div>
       <table className="table">
         <thead>
