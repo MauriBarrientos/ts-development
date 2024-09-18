@@ -25,7 +25,7 @@ class SupplierService {
         if (updatedRows === 0) {
             throw new Error("Proveedor no encontrado");
         }
-        return this.getSupplierById(id);  // Devolver el proveedor actualizado
+        return this.getSupplierById(id);  
     }
 
     // Eliminar un proveedor

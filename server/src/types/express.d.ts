@@ -5,7 +5,6 @@ declare global {
         interface Request {
             user?: {
                 id: number;
-                // Añade otros campos relevantes según sea necesario
             };
         }
     }

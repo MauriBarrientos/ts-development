@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserServices from "../services/UserServices"; // Importar servicios
+import UserServices from "../services/UserServices";
 
 class UserController {
     constructor() {}
@@ -20,7 +20,7 @@ class UserController {
             const newUser = await UserServices.create(user);
             return res.status(201).json(newUser);
         } catch (error) {
-            console.error("Error al crear usuario:", error); // Añadir log para depuración
+            console.error("Error al crear usuario:", error); // para depuración
             return res.status(500).json({ message: "Error al crear usuario", error: (error as Error).message });
         }
     }

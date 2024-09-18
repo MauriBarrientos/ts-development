@@ -21,7 +21,7 @@ class EquipmentService {
         status: string;
         equip_info_id: number;
         buy_date: Date;
-        users_id: number; // Asegúrate de que el nombre sea users_id
+        users_id: number; 
         supplier_id: number;
     }) {
         return await Equipment.create(equipmentData);
@@ -42,7 +42,7 @@ class EquipmentService {
         if (updatedRows === 0) {
             throw new Error("Equipo no encontrado");
         }
-        return this.getEquipmentById(id);  // Devolver el equipo actualizado
+        return this.getEquipmentById(id); 
     }
 
     // Eliminar un equipo

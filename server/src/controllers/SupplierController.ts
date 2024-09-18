@@ -1,4 +1,3 @@
-// controllers/SupplierController.ts
 import { Request, Response } from "express";
 import SupplierService from "../services/SupplierServices";
 

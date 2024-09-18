@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import bcrypt from 'bcryptjs'; // Asegúrate de tener bcryptjs instalado
+import bcrypt from 'bcryptjs'; 
 import { Request, Response } from "express";
-import UserServices from '../services/UserServices'; // Asegúrate de importar el servicio correcto
+import UserServices from '../services/UserServices'; 
 
 class AuthController {
     static async login(req: Request, res: Response): Promise<Response> {

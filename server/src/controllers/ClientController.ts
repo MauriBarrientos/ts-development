@@ -1,4 +1,3 @@
-// controllers/ClientController.ts
 import { Request, Response } from "express";
 import ClientServices from "../services/ClientServices";
 

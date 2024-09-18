@@ -38,7 +38,7 @@ class EquipmentController {
                 stock,
                 status,
                 buy_date,
-                user_id, // Este user_id ahora se obtiene del frontend
+                user_id, 
                 supplier_id,
                 client_id
             });

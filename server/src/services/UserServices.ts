@@ -5,7 +5,7 @@ class UserServices {
     constructor() {}
 
     // Obtener todos los usuarios
-    async findAll(): Promise<User[]> { //Se usa el tipo user para aceptar obj con propiedades del modelo user
+    async findAll(): Promise<User[]> { //se usa el tipo user para aceptar obj con propiedades del modelo user
         return await User.findAll();
     }
 

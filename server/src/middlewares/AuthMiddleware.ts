@@ -20,8 +20,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
 
     try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY || "secretKey") as TokenPayload;
-        req.user = decoded; // Agrega la información del token al objeto `req`
-        next();
+        req.user = decoded; 
     } catch (error) {
         return res.status(400).json({ message: "Token inválido" });
     }
